@@ -1,9 +1,30 @@
 services:
-  jarvis:
-    image: grok/jarvis:latest
+  jarvis-core:
+    image: grok/jarvis:heavy
+    container_name: jarvis
     volumes:
       - ./knowledge-base:/app/knowledge-base
+      - jarvis-data:/app/data
     ports:
       - "8080:8080"
+      - "11434:11434"  # Ollama
     environment:
       - GROK_API_KEY=${GROK_API_KEY}
+      - OLLAMA_HOST=0.0.0.0
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+volumes:
+  jarvis-data:
+  ollama:
