@@ -5,9 +5,17 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    command: >
-      bash -c "apt-get update -qq && apt-get install -y --no-install-recommends git && pip install --quiet rich requests && echo '✅ JARVIS Agent v1.0 Ready' && echo 'Knowledge base is mounted. Run: ls knowledge-base' && bash" 
     ports:
       - "8080:8080"
+      - "8501:8501"
+    command: >
+      bash -c "
+        apt-get update -qq &&
+        apt-get install -y --no-install-recommends git &&
+        pip install --quiet rich requests streamlit &&
+        echo '✅ JARVIS Agent v1.0 Ready with Dashboard' &&
+        echo 'Starting Streamlit dashboard on port 8501...' &&
+        streamlit run dashboard.py --server.port 8501 --server.headless true --server.address 0.0.0.0
+      "
     tty: true
     stdin_open: true
