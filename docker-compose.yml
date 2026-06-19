@@ -5,7 +5,8 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    command: bash -c "pip install --quiet rich requests && echo '✅ JARVIS initialized. Run python jarvis.py for interactive mode.' && bash"
+    command: >
+      bash -c "apt-get update -qq && apt-get install -y --no-install-recommends git && pip install --quiet rich requests && echo '✅ JARVIS Agent v1.0 Ready' && echo 'Knowledge base is mounted. Run: ls knowledge-base' && bash" 
     ports:
       - "8080:8080"
     tty: true

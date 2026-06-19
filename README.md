@@ -1,7 +1,10 @@
 # JARVIS Agent
 
-## One-Command Fix
+## Windows Quick Start (PowerShell)
 
-git pull && docker compose up -d
+cd jarvis-agent
+git pull
+.
+\setup.ps1
 
-Then run: docker exec -it jarvis python jarvis.py
+Then: docker exec -it jarvis bash
