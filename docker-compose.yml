@@ -8,14 +8,6 @@ services:
     ports:
       - "8080:8080"
       - "8501:8501"
-    command: >
-      bash -c "
-        apt-get update -qq &&
-        apt-get install -y --no-install-recommends git &&
-        pip install --quiet rich requests streamlit &&
-        echo '✅ JARVIS Agent v1.0 Ready with Dashboard' &&
-        echo 'Starting Streamlit dashboard on port 8501...' &&
-        streamlit run dashboard.py --server.port 8501 --server.headless true --server.address 0.0.0.0
-      "
+    command: bash -c "apt-get update -qq && apt-get install -y --no-install-recommends git && pip install --quiet rich requests streamlit && echo '✅ JARVIS Container Ready' && tail -f /dev/null"
     tty: true
     stdin_open: true
