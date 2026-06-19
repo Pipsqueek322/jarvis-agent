@@ -1,8 +1,7 @@
 # JARVIS Agent
 
-Truth-seeking, hardened, Zero Trust agentic system.
+## One-Command Fix
 
-## Installation
+git pull && docker compose up -d
 
-1. Install Docker Desktop
-2. `docker compose up -d`
+Then run: docker exec -it jarvis python jarvis.py
